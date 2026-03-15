@@ -1,0 +1,2 @@
+nginx: [warn] the "listen ... http2" directive is deprecated, use the "http2" directive instead in /app/deploy/nginx/nginx.conf:47
+nginx: [warn] the "listen ... http2" directive is deprecated, use the "http2" directive instead in /app/deploy/nginx/nginx.conf:47

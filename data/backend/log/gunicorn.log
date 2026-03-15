@@ -1,0 +1,56 @@
+[2026-03-14 12:57:21 +0000] [139] [INFO] Starting gunicorn 21.2.0
+[2026-03-14 12:57:21 +0000] [139] [INFO] Listening at: http://127.0.0.1:8080 (139)
+[2026-03-14 12:57:21 +0000] [139] [INFO] Using worker: gthread
+[2026-03-14 12:57:21 +0000] [157] [INFO] Booting worker with pid: 157
+[2026-03-14 12:57:21 +0000] [158] [INFO] Booting worker with pid: 158
+[2026-03-14 12:57:21 +0000] [159] [INFO] Booting worker with pid: 159
+[2026-03-14 12:57:21 +0000] [160] [INFO] Booting worker with pid: 160
+[2026-03-14 12:57:21 +0000] [161] [INFO] Booting worker with pid: 161
+[2026-03-14 12:57:21 +0000] [162] [INFO] Booting worker with pid: 162
+[2026-03-14 12:57:21 +0000] [163] [INFO] Booting worker with pid: 163
+[2026-03-14 12:57:21 +0000] [164] [INFO] Booting worker with pid: 164
+[2026-03-14 12:57:21 +0000] [165] [INFO] Booting worker with pid: 165
+[2026-03-14 12:57:21 +0000] [166] [INFO] Booting worker with pid: 166
+[2026-03-14 12:57:21 +0000] [167] [INFO] Booting worker with pid: 167
+[2026-03-14 12:57:21 +0000] [168] [INFO] Booting worker with pid: 168
+[2026-03-14 12:57:21 +0000] [169] [INFO] Booting worker with pid: 169
+[2026-03-14 12:57:21 +0000] [170] [INFO] Booting worker with pid: 170
+[2026-03-14 12:57:22 +0000] [171] [INFO] Booting worker with pid: 171
+[2026-03-14 12:57:22 +0000] [172] [INFO] Booting worker with pid: 172
+[2026-03-14 17:54:13 +0000] [139] [INFO] Handling signal: term
+[2026-03-14 17:54:14 +0000] [164] [INFO] Worker exiting (pid: 164)
+[2026-03-14 17:54:14 +0000] [158] [INFO] Worker exiting (pid: 158)
+[2026-03-14 17:54:14 +0000] [157] [INFO] Worker exiting (pid: 157)
+[2026-03-14 17:54:14 +0000] [159] [INFO] Worker exiting (pid: 159)
+[2026-03-14 17:54:14 +0000] [165] [INFO] Worker exiting (pid: 165)
+[2026-03-14 17:54:14 +0000] [161] [INFO] Worker exiting (pid: 161)
+[2026-03-14 17:54:14 +0000] [169] [INFO] Worker exiting (pid: 169)
+[2026-03-14 17:54:14 +0000] [166] [INFO] Worker exiting (pid: 166)
+[2026-03-14 17:54:14 +0000] [160] [INFO] Worker exiting (pid: 160)
+[2026-03-14 17:54:14 +0000] [167] [INFO] Worker exiting (pid: 167)
+[2026-03-14 17:54:14 +0000] [172] [INFO] Worker exiting (pid: 172)
+[2026-03-14 17:54:14 +0000] [171] [INFO] Worker exiting (pid: 171)
+[2026-03-14 17:54:15 +0000] [163] [INFO] Worker exiting (pid: 163)
+[2026-03-14 17:54:15 +0000] [168] [INFO] Worker exiting (pid: 168)
+[2026-03-14 17:54:15 +0000] [170] [INFO] Worker exiting (pid: 170)
+[2026-03-14 17:54:15 +0000] [162] [INFO] Worker exiting (pid: 162)
+[2026-03-14 17:54:18 +0000] [139] [INFO] Shutting down: Master
+[2026-03-14 17:54:39 +0000] [118] [INFO] Starting gunicorn 21.2.0
+[2026-03-14 17:54:39 +0000] [118] [INFO] Listening at: http://127.0.0.1:8080 (118)
+[2026-03-14 17:54:39 +0000] [118] [INFO] Using worker: gthread
+[2026-03-14 17:54:39 +0000] [136] [INFO] Booting worker with pid: 136
+[2026-03-14 17:54:39 +0000] [137] [INFO] Booting worker with pid: 137
+[2026-03-14 17:54:39 +0000] [138] [INFO] Booting worker with pid: 138
+[2026-03-14 17:54:39 +0000] [139] [INFO] Booting worker with pid: 139
+[2026-03-14 17:54:39 +0000] [140] [INFO] Booting worker with pid: 140
+[2026-03-14 17:54:39 +0000] [141] [INFO] Booting worker with pid: 141
+[2026-03-14 17:54:40 +0000] [142] [INFO] Booting worker with pid: 142
+[2026-03-14 17:54:40 +0000] [143] [INFO] Booting worker with pid: 143
+[2026-03-14 17:54:40 +0000] [144] [INFO] Booting worker with pid: 144
+[2026-03-14 17:54:40 +0000] [145] [INFO] Booting worker with pid: 145
+[2026-03-14 17:54:40 +0000] [146] [INFO] Booting worker with pid: 146
+[2026-03-14 17:54:40 +0000] [147] [INFO] Booting worker with pid: 147
+[2026-03-14 17:54:40 +0000] [148] [INFO] Booting worker with pid: 148
+[2026-03-14 17:54:40 +0000] [149] [INFO] Booting worker with pid: 149
+[2026-03-14 17:54:40 +0000] [150] [INFO] Booting worker with pid: 150
+[2026-03-14 17:54:40 +0000] [151] [INFO] Booting worker with pid: 151
