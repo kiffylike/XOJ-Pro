@@ -1,0 +1,354 @@
+Started by user admin
+Obtained Jenkinsfile from git https://github.com/kiffylike/GIITOJ.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/GIITOJ-CICD
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/GIITOJ-CICD/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/kiffylike/GIITOJ.git # timeout=10
+Fetching upstream changes from https://github.com/kiffylike/GIITOJ.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/kiffylike/GIITOJ.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 4825af907aa06059db4346c5998c198b27e44747 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 4825af907aa06059db4346c5998c198b27e44747 # timeout=10
+Commit message: "fix: Add proxy to docker build inside Jenkinsfile for npm install"
+ > git rev-list --no-walk ffc3f884777b34891b714fce8e68553f727acdec # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/GIITOJ-CICD/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/kiffylike/GIITOJ.git # timeout=10
+Fetching upstream changes from https://github.com/kiffylike/GIITOJ.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/kiffylike/GIITOJ.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 4825af907aa06059db4346c5998c198b27e44747 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 4825af907aa06059db4346c5998c198b27e44747 # timeout=10
+Commit message: "fix: Add proxy to docker build inside Jenkinsfile for npm install"
+[Pipeline] echo
+代码拉取成功
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Images)
+[Pipeline] echo
+开始构建 Docker 镜像...
+[Pipeline] sh
++ docker compose -f docker-compose.build.yml build --build-arg HTTP_PROXY=http://host.docker.internal:7897 --build-arg HTTPS_PROXY=http://host.docker.internal:7897
+#0 building with "default" instance using docker driver
+
+#1 [oj-judge internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.86kB 0.0s done
+#1 DONE 0.1s
+
+#2 [oj-frontend internal] load build definition from Dockerfile
+#2 transferring dockerfile: 532B 0.0s done
+#2 DONE 0.1s
+
+#3 [oj-backend internal] load build definition from Dockerfile
+#3 transferring dockerfile: 1.21kB 0.0s done
+#3 DONE 0.1s
+
+#4 [oj-frontend internal] load metadata for docker.io/library/nginx:alpine
+#4 ...
+
+#5 [oj-backend internal] load metadata for docker.io/library/alpine:3.19
+#5 DONE 3.2s
+
+#6 [oj-frontend internal] load metadata for docker.io/library/node:18-alpine
+#6 DONE 3.2s
+
+#7 [oj-backend internal] load metadata for docker.io/library/python:3.12-alpine
+#7 DONE 3.2s
+
+#8 [oj-judge internal] load metadata for docker.io/library/debian:bookworm-slim
+#8 DONE 3.3s
+
+#9 [oj-backend internal] load .dockerignore
+#9 transferring context: 66B 0.0s done
+#9 DONE 0.0s
+
+#10 [oj-judge internal] load .dockerignore
+#10 transferring context: 2B done
+#10 DONE 0.0s
+
+#4 [oj-frontend internal] load metadata for docker.io/library/nginx:alpine
+#4 ...
+
+#11 [oj-judge builder 1/6] FROM docker.io/library/debian:bookworm-slim@sha256:f06537653ac770703bc45b4b113475bd402f451e85223f0f2837acbf89ab020a
+#11 resolve docker.io/library/debian:bookworm-slim@sha256:f06537653ac770703bc45b4b113475bd402f451e85223f0f2837acbf89ab020a 0.1s done
+#11 DONE 0.1s
+
+#12 [oj-backend stage-1 1/7] FROM docker.io/library/python:3.12-alpine@sha256:7747d47f92cfca63a6e2b50275e23dba8407c30d8ae929a88ddd49a5d3f2d331
+#12 resolve docker.io/library/python:3.12-alpine@sha256:7747d47f92cfca63a6e2b50275e23dba8407c30d8ae929a88ddd49a5d3f2d331 0.1s done
+#12 DONE 0.1s
+
+#13 [oj-backend downloader 1/3] FROM docker.io/library/alpine:3.19@sha256:6baf43584bcb78f2e5847d1de515f23499913ac9f12bdf834811a3145eb11ca1
+#13 resolve docker.io/library/alpine:3.19@sha256:6baf43584bcb78f2e5847d1de515f23499913ac9f12bdf834811a3145eb11ca1 0.1s done
+#13 DONE 0.1s
+
+#14 [oj-judge internal] load build context
+#14 transferring context: 5.51kB 0.0s done
+#14 DONE 0.0s
+
+#15 [oj-judge builder 5/6] RUN <<EOS (set -ex...)
+#15 CACHED
+
+#16 [oj-judge stage-1 3/9] RUN --mount=type=cache,target=/var/cache/apt,id=apt-cahce-1-amd64-final,sharing=locked     --mount=type=cache,target=/var/lib/apt,id=apt-cahce-2-amd64-final,sharing=locked     <<EOS (set -ex...)
+#16 CACHED
+
+#17 [oj-judge stage-1 5/9] COPY --from=builder /app/bindings/Python/dist/ /app/
+#17 CACHED
+
+#18 [oj-judge builder 6/6] RUN <<EOS (set -ex...)
+#18 CACHED
+
+#19 [oj-judge stage-1 7/9] COPY server/ /app/
+#19 CACHED
+
+#20 [oj-judge stage-1 8/9] RUN <<EOS (set -ex...)
+#20 CACHED
+
+#21 [oj-judge builder 4/6] COPY Judger-1.5/ /app/
+#21 CACHED
+
+#22 [oj-judge stage-1 6/9] RUN --mount=type=cache,target=/root/.cache/pip,id=pip-cahce-amd64-final     <<EOS (set -ex...)
+#22 CACHED
+
+#23 [oj-judge stage-1 4/9] COPY --from=builder --chmod=755 --link /app/output/libjudger.so /usr/lib/judger/libjudger.so
+#23 CACHED
+
+#24 [oj-judge builder 3/6] RUN --mount=type=cache,target=/var/cache/apt,id=apt-cahce-1-amd64-builder,sharing=locked     --mount=type=cache,target=/var/lib/apt,id=apt-cahce-2-amd64-builder,sharing=locked     <<EOS (set -ex...)
+#24 CACHED
+
+#25 [oj-judge builder 2/6] WORKDIR /app
+#25 CACHED
+
+#26 [oj-judge stage-1 9/9] RUN <<EOS (set -ex...)
+#26 CACHED
+
+#27 [oj-backend internal] load build context
+#27 transferring context: 10.54kB 0.1s done
+#27 DONE 0.1s
+
+#28 [oj-backend downloader 3/3] RUN <<EOS (set -ex...)
+#28 CACHED
+
+#29 [oj-backend stage-1 6/7] COPY --from=downloader --link /app/dist/ /app/dist/
+#29 CACHED
+
+#30 [oj-backend downloader 2/3] WORKDIR /app
+#30 CACHED
+
+#31 [oj-backend stage-1 5/7] COPY ./ /app/
+#31 CACHED
+
+#32 [oj-backend stage-1 3/7] COPY ./deploy/requirements.txt /app/deploy/
+#32 CACHED
+
+#33 [oj-backend stage-1 2/7] WORKDIR /app
+#33 CACHED
+
+#34 [oj-backend stage-1 4/7] RUN --mount=type=cache,target=/etc/apk/cache,id=apk-cahce-amd64-final     --mount=type=cache,target=/root/.cache/pip,id=pip-cahce-amd64-final     <<EOS (set -ex...)
+#34 CACHED
+
+#35 [oj-backend stage-1 7/7] RUN chmod -R u=rwX,go=rX ./ && chmod +x ./deploy/entrypoint.sh
+#35 CACHED
+
+#4 [oj-frontend internal] load metadata for docker.io/library/nginx:alpine
+#4 DONE 3.5s
+
+#36 [oj-frontend internal] load .dockerignore
+#36 transferring context: 2B 0.0s done
+#36 DONE 0.0s
+
+#37 [oj-backend] exporting to image
+#37 exporting layers 0.0s done
+#37 exporting manifest sha256:c57978ffdd7af362ea75062b7930f74f9f75d020b82743c10362bc07d11c5d87
+#37 ...
+
+#38 [oj-frontend internal] load build context
+#38 DONE 0.0s
+
+#39 [oj-frontend stage-1 1/5] FROM docker.io/library/nginx:alpine@sha256:f46cb72c7df02710e693e863a983ac42f6a9579058a59a35f1ae36c9958e4ce0
+#39 resolve docker.io/library/nginx:alpine@sha256:f46cb72c7df02710e693e863a983ac42f6a9579058a59a35f1ae36c9958e4ce0 0.1s done
+#39 DONE 0.1s
+
+#37 [oj-backend] exporting to image
+#37 exporting manifest sha256:c57978ffdd7af362ea75062b7930f74f9f75d020b82743c10362bc07d11c5d87 0.0s done
+#37 exporting config sha256:e50b93fe048898a7f149b204b13ab3fea7706b8716ce046cf54c891d3e19f310 0.0s done
+#37 exporting attestation manifest sha256:66db4bfe2159369b88a26e736ec08ff0e620bd33c09aae8400da87e84fb65e9a
+#37 exporting attestation manifest sha256:66db4bfe2159369b88a26e736ec08ff0e620bd33c09aae8400da87e84fb65e9a 0.1s done
+#37 exporting manifest list sha256:5fef6025cddec3f33f827d116b8c08a59c7e93d812975cc18452e9bfaa2821fe 0.0s done
+#37 naming to docker.io/kiffyowo/backend:v2.0 done
+#37 unpacking to docker.io/kiffyowo/backend:v2.0 0.0s done
+#37 DONE 0.3s
+
+#40 [oj-frontend builder 1/8] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#40 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.1s done
+#40 DONE 0.1s
+
+#38 [oj-frontend internal] load build context
+#38 transferring context: 8.74kB 0.1s done
+#38 DONE 0.1s
+
+#41 [oj-frontend builder 3/8] RUN apk add --no-cache git python3 make g++
+#41 CACHED
+
+#42 [oj-frontend builder 2/8] WORKDIR /app
+#42 CACHED
+
+#43 [oj-frontend builder 4/8] COPY package*.json ./
+#43 CACHED
+
+#44 [oj-frontend builder 5/8] RUN npm install --registry=https://registry.npmmirror.com
+#44 ...
+
+#45 [oj-judge] exporting to image
+#45 exporting layers 163.6s done
+#45 exporting manifest sha256:486a867e802468fa002a35491781846140ae7d0ffcaee5d639770af92562585f 0.0s done
+#45 exporting config sha256:0121e0128897e762a5e85f4eede681df4a32f1b77aa0d7c3b04196ef24ebeb21 0.0s done
+#45 exporting attestation manifest sha256:4f7a3cdcfb5be32dd001df46100033d7f2925d4dc2ed72860e09b60d49907d19 0.0s done
+#45 exporting manifest list sha256:a57e548290f297915bc2e6bda7d44e174f4236c4e6258a4724adf4a92f431a4d 0.1s done
+#45 naming to docker.io/kiffyowo/judge:v2.0
+#45 naming to docker.io/kiffyowo/judge:v2.0 done
+#45 unpacking to docker.io/kiffyowo/judge:v2.0
+#45 ...
+
+#44 [oj-frontend builder 5/8] RUN npm install --registry=https://registry.npmmirror.com
+#44 178.8 npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+#44 183.8 npm warn deprecated bfj-node4@5.3.1: Switch to the `bfj` package for fixes and new features!
+#44 185.0 npm warn deprecated acorn-dynamic-import@2.0.2: This is probably built in to whatever tool you're using. If you still need it... idk
+#44 185.6 npm warn deprecated consolidate@0.14.5: Please upgrade to consolidate v1.0.0+ as it has been modernized with several long-awaited fixes implemented. Maintenance is supported by Forward Email at https://forwardemail.net ; follow/watch https://github.com/ladjs/consolidate for updates and release changelog
+#44 186.9 npm warn deprecated har-validator@5.1.5: this library is no longer supported
+#44 187.0 npm warn deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+#44 187.4 npm warn deprecated content-type-parser@1.0.2: Use whatwg-mimetype instead
+#44 187.7 npm warn deprecated abab@1.0.4: Use your platform's native atob() and btoa() methods instead
+#44 188.3 npm warn deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+#44 188.5 npm warn deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+#44 188.5 npm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+#44 188.5 npm warn deprecated
+#44 188.5 npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+#44 188.5 npm warn deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+#44 188.6 npm warn deprecated uglify-es@3.3.10: support for ECMAScript is superseded by `uglify-js` as of v3.13.0 ([WARNING] Use 3.3.9 instead of 3.3.10, reason: see https://github.com/mishoo/UglifyJS2/issues/2896)
+#44 188.6 npm warn deprecated source-map-url@0.4.1: See https://github.com/lydell/source-map-url#deprecated
+#44 189.1 npm warn deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+#44 189.3 npm warn deprecated to-markdown@3.1.1: to-markdown has been renamed to Turndown, with a new API. Please update to turndown v4.0.0 or above and see the migration guide for details: https://github.com/domchristie/turndown/wiki/Migrating-from-to-markdown-to-Turndown
+#44 190.0 npm warn deprecated flatten@1.0.3: flatten is deprecated in favor of utility frameworks such as lodash.
+#44 192.1 npm warn deprecated copy-concurrently@1.0.5: This package is no longer supported.
+#44 192.2 npm warn deprecated fs-write-stream-atomic@1.0.10: This package is no longer supported.
+#44 192.5 npm warn deprecated svgo@0.7.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+#44 193.0 npm warn deprecated jquery@3.1.1: This version is deprecated. Please upgrade to the latest version or find support at https://www.herodevs.com/support/jquery-nes.
+#44 195.3 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+#44 195.5 npm warn deprecated circular-json@0.3.3: CircularJSON is in maintenance only, flatted is its successor.
+#44 195.8 npm warn deprecated popper.js@1.16.1: You can find the new Popper v2 at @popperjs/core, this package is dedicated to the legacy v1
+#44 202.1 npm warn deprecated move-concurrently@1.0.1: This package is no longer supported.
+#44 205.0 npm warn deprecated browserslist@2.11.3: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+#44 205.5 npm warn deprecated vue-analytics@5.22.1: Sorry but vue-analytics is no longer maintained. I would suggest you switch to vue-gtag, with love, the guy who made the package.
+#44 205.8 npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+#44 206.7 npm warn deprecated html-webpack-plugin@2.30.1: out of support
+#44 206.8 npm warn deprecated eslint-loader@1.9.0: This loader has been deprecated. Please use eslint-webpack-plugin
+#44 209.6 npm warn deprecated extract-text-webpack-plugin@3.0.2: Deprecated. Please use https://github.com/webpack-contrib/mini-css-extract-plugin
+#44 209.7 npm warn deprecated babel-eslint@7.2.3: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
+#44 210.0 npm warn deprecated highlight.js@9.18.5: Support has ended for 9.x series. Upgrade to @latest
+#44 210.2 npm warn deprecated axios@0.18.1: Critical security vulnerability fixed in v0.21.1. For more information, see https://github.com/axios/axios/pull/3410
+#44 210.6 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+#44 210.9 npm warn deprecated eslint@3.19.0: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+#44 214.5 npm warn deprecated raven-js@3.27.2: Please upgrade to @sentry/browser. See the migration guide https://bit.ly/3ybOlo7
+#44 215.5 npm warn deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+#44 215.5 npm warn deprecated vue@2.7.16: Vue 2 has reached EOL and is no longer actively maintained. See https://v2.vuejs.org/eol/ for more details.
+#44 216.1 npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+#44 218.0 npm warn deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+#44 ...
+
+#45 [oj-judge] exporting to image
+#45 unpacking to docker.io/kiffyowo/judge:v2.0 55.1s done
+#45 DONE 219.1s
+
+#44 [oj-frontend builder 5/8] RUN npm install --registry=https://registry.npmmirror.com
+#44 219.0 npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+#44 223.2 npm warn deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+#44 225.9 npm warn deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+#44 227.1 npm warn deprecated jquery@2.2.4: This version is deprecated. Please upgrade to the latest version or find support at https://www.herodevs.com/support/jquery-nes.
+#44 232.2 npm error code ECONNRESET
+#44 232.2 npm error network aborted
+#44 232.2 npm error network This is a problem related to network connectivity.
+#44 232.2 npm error network In most cases you are behind a proxy or have bad network settings.
+#44 232.2 npm error network
+#44 232.2 npm error network If you are behind a proxy, please make sure that the
+#44 232.2 npm error network 'proxy' config is set properly.  See: 'npm help config'
+#44 232.2 npm notice
+#44 232.2 npm notice New major version of npm available! 10.8.2 -> 11.11.1
+#44 232.2 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.1
+#44 232.2 npm notice To update run: npm install -g npm@11.11.1
+#44 232.2 npm notice
+#44 232.2 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-03-17T20_57_58_066Z-debug-0.log
+#44 ERROR: process "/bin/sh -c npm install --registry=https://registry.npmmirror.com" did not complete successfully: exit code: 1
+------
+ > [oj-frontend builder 5/8] RUN npm install --registry=https://registry.npmmirror.com:
+232.2 npm error network In most cases you are behind a proxy or have bad network settings.
+232.2 npm error network
+232.2 npm error network If you are behind a proxy, please make sure that the
+232.2 npm error network 'proxy' config is set properly.  See: 'npm help config'
+232.2 npm notice
+232.2 npm notice New major version of npm available! 10.8.2 -> 11.11.1
+232.2 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.1
+232.2 npm notice To update run: npm install -g npm@11.11.1
+232.2 npm notice
+232.2 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-03-17T20_57_58_066Z-debug-0.log
+------
+failed to solve: process "/bin/sh -c npm install --registry=https://registry.npmmirror.com" did not complete successfully: exit code: 1
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push to Docker Hub)
+Stage "Push to Docker Hub" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+Stage "Deploy" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] sh
++ docker image prune -f
+Total reclaimed space: 0B
+[Pipeline] echo
+执行清理工作完毕
+[Pipeline] echo
+❌ CI/CD 流程执行失败，请检查日志。
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 17
+Finished: FAILURE
