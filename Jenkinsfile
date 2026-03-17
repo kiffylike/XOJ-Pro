@@ -20,7 +20,7 @@ pipeline {
             steps {
                 echo "开始构建 Docker 镜像..."
                 // 注入代理，让 Docker 在打包时走你的 Clash，完美解决 npm 网络被断的问题
-                sh 'docker compose -f ${COMPOSE_FILE} build --build-arg HTTP_PROXY=http://host.docker.internal:7890 --build-arg HTTPS_PROXY=http://host.docker.internal:7890'
+                sh 'docker compose -f ${COMPOSE_FILE} build --build-arg HTTP_PROXY=http://host.docker.internal:7897 --build-arg HTTPS_PROXY=http://host.docker.internal:7897'
             }
         }
 
