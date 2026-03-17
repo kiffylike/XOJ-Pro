@@ -1,0 +1,16 @@
+FROM jenkins/jenkins:lts
+
+# 切换到 root 用户来运行安装命令
+USER root
+
+# 更新包列表并安装 docker 客户端以及 curl
+RUN apt-get update && \
+    apt-get install -y docker.io curl && \
+    mkdir -p /usr/local/lib/docker/cli-plugins && \
+    curl -SL https://github.com/docker/compose/releases/download/v2.24.6/docker-compose-linux-x86_64 -o /usr/local/lib/docker/cli-plugins/docker-compose && \
+    chmod +x /usr/local/lib/docker/cli-plugins/docker-compose && \
+    ln -s /usr/local/lib/docker/cli-plugins/docker-compose /usr/local/bin/docker-compose && \
+    rm -rf /var/lib/apt/lists/*
+
+# 保持 root 用户，确保挂载进来的 docker.sock 有足够的权限被访问
+USER root
