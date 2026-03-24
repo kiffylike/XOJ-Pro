@@ -1,0 +1,15 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  group_by: ['alertname']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'dingtalk'
+
+receivers:
+- name: 'dingtalk'
+  webhook_configs:
+  - url: 'http://dingtalk-webhook:8060/dingtalk/ops_dingtalk/send' # 这里可以换成钉钉机器人地址
+    send_resolved: true

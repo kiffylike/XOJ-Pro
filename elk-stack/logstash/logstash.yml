@@ -1,0 +1,20 @@
+# Logstash 基础配置
+
+http.host: "0.0.0.0"
+http.port: 9600
+
+# Pipeline 配置
+pipeline.workers: 2
+pipeline.batch.size: 250
+pipeline.batch.delay: 50
+
+# 自动重载 pipeline（修改 giitoj.conf 后无需重启）
+config.reload.automatic: true
+config.reload.interval: 10s
+
+# 日志输出
+log.level: warn
+log.format: plain
+
+# 关闭 xpack monitoring（避免连接本地不存在的 ES）
+xpack.monitoring.enabled: false

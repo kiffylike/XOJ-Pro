@@ -1,4 +1,3 @@
-version: "3.8"
 services:
 
   oj-redis:
@@ -19,7 +18,7 @@ services:
       - POSTGRES_PASSWORD=onlinejudge
 
   oj-judge:
-    image: kiffyowo/judge:v2.0
+    image: crpi-bf3kcemfp45x9kin.cn-guangzhou.personal.cr.aliyuncs.com/kiffy-oj/judge:v2.0
     restart: always
     read_only: true
     cap_drop:
@@ -41,7 +40,7 @@ services:
       - TOKEN=CHANGE_THIS
 
   oj-backend:
-    image: kiffyowo/backend:v2.0
+    image: crpi-bf3kcemfp45x9kin.cn-guangzhou.personal.cr.aliyuncs.com/kiffy-oj/backend:v2.0
     restart: always
     depends_on:
       - oj-redis
@@ -56,12 +55,13 @@ services:
       - JUDGE_SERVER_TOKEN=CHANGE_THIS
 
   oj-frontend:
-    image: kiffyowo/frontend:v2.0
+    image: crpi-bf3kcemfp45x9kin.cn-guangzhou.personal.cr.aliyuncs.com/kiffy-oj/frontend:v2.0
     restart: always
     depends_on:
       - oj-backend
     volumes:
       - ./data/backend:/app/data:ro
+      - ./data/frontend/log:/var/log/nginx   # 前端 Nginx 日志持久化，供 Filebeat 采集
     ports:
       - "0.0.0.0:80:80"
       - "0.0.0.0:443:443"

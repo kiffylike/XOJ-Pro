@@ -1,0 +1,28 @@
+global:
+  scrape_interval: 15s
+
+# 1. 告诉 Prometheus 警报器在哪里
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 'alertmanager:9093' # 使用 Docker 服务名
+
+# 2. 告诉 Prometheus 告警规则文件在哪里
+rule_files:
+  - "alert_rules.yml"
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'server-monitor'
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          # 配合 8919 面板的变量抓取规则，自定义您的标签
+          vendor: '火山引擎'  #对应云厂商
+          account: 'KIFFY-X'  #对应账户
+          group: '核心路由节点'  #对应分组
+          name: 'GIITOJ-主节点'  #这台机器名字

@@ -1,0 +1,37 @@
+# Kibana 配置文件
+# 访问地址: http://<服务器IP>:5601
+
+server.host: "0.0.0.0"
+server.port: 5601
+server.name: "GIITOJ-Kibana"
+
+# Elasticsearch 连接地址
+elasticsearch.hosts: ["http://elasticsearch:9200"]
+
+# 请求超时时间（毫秒）
+elasticsearch.requestTimeout: 60000
+
+# 界面语言：中文
+i18n.locale: "zh-CN"
+
+# 兼容部分 Chromium 环境（避免出现“请升级您的浏览器”拦截页）
+csp.strict: false
+csp.warnLegacyBrowsers: false
+
+# 关闭遥测
+telemetry.enabled: false
+telemetry.optIn: false
+
+# 关闭新闻提示
+newsfeed.enabled: false
+
+# 日志输出到控制台
+logging.appenders.console:
+  type: console
+  layout:
+    type: pattern
+    pattern: "[%date][%level][%logger] %message"
+
+logging.root:
+  appenders: [console]
+  level: warn

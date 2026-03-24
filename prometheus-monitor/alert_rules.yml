@@ -1,0 +1,18 @@
+groups:
+- name: host_alerts
+  rules:
+  - alert: 主机CPU过载
+    expr: 100 - (avg by(instance, vendor, name, account) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 80
+    for: 30s
+    labels:
+      severity: 致命
+    annotations:
+      summary: "🚨 Sir, 监测到 CPU 负载异常！"
+      description: |
+        实例 {{ $labels.instance }} 的 CPU 使用率已超过 80% (当前值: {{ $value }}%)
+        【云厂商】：{{ $labels.vendor }}
+        【主机名】：{{ $labels.name }}
+        【账户】：{{ $labels.account }}
+        【详情】：当前CPU使用率已飙升至{{ $value | printf "%.2f" }}%,超过80%的阈值，请及时处理！
+
+

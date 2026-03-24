@@ -1,20 +1,19 @@
-version: "3.8"
 services:
 
   oj-judge:
     build:
       context: ./JudgeServer-master
       dockerfile: Dockerfile
-    image: kiffyowo/judge:v2.0
+    image: crpi-bf3kcemfp45x9kin.cn-guangzhou.personal.cr.aliyuncs.com/kiffy-oj/judge:v2.0
 
   oj-backend:
     build:
       context: ./OnlineJudge-master
       dockerfile: Dockerfile
-    image: kiffyowo/backend:v2.0
+    image: crpi-bf3kcemfp45x9kin.cn-guangzhou.personal.cr.aliyuncs.com/kiffy-oj/backend:v2.0
 
   oj-frontend:
     build:
       context: ./OnlineJudgeFE-master
       dockerfile: deploy/Dockerfile
-    image: kiffyowo/frontend:v2.0
+    image: crpi-bf3kcemfp45x9kin.cn-guangzhou.personal.cr.aliyuncs.com/kiffy-oj/frontend:v2.0

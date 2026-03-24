@@ -1,0 +1,80 @@
+filebeat.inputs:
+
+  # ── 后端 Nginx 访问日志 ──────────────────────────
+  - type: filestream
+    id: nginx-access
+    enabled: true
+    paths:
+      - /logs/backend/nginx_access.log
+    tags: ["nginx-access"]
+    parsers:
+      - ndjson:
+          overwrite_keys: false
+
+  # ── 后端 Nginx 错误日志 ──────────────────────────
+  - type: filestream
+    id: nginx-error
+    enabled: true
+    paths:
+      - /logs/backend/nginx_error.log
+    tags: ["nginx-error"]
+
+  # ── Gunicorn WSGI 日志 ───────────────────────────
+  - type: filestream
+    id: gunicorn
+    enabled: true
+    paths:
+      - /logs/backend/gunicorn.log
+    tags: ["gunicorn"]
+
+  # ── Dramatiq 异步任务 Worker 日志 ────────────────
+  - type: filestream
+    id: dramatiq
+    enabled: true
+    paths:
+      - /logs/backend/dramatiq.log
+    tags: ["dramatiq"]
+
+  # ── Supervisord 进程管理日志 ─────────────────────
+  - type: filestream
+    id: supervisord
+    enabled: true
+    paths:
+      - /logs/backend/supervisord.log
+    tags: ["supervisord"]
+
+  # ── 判题服务日志 ─────────────────────────────────
+  - type: filestream
+    id: judge
+    enabled: true
+    paths:
+      - /logs/judge/*.log
+    tags: ["judge"]
+
+  # ── 前端 Nginx 访问日志 ──────────────────────────
+  - type: filestream
+    id: frontend-nginx
+    enabled: true
+    paths:
+      - /logs/frontend/access.log
+    tags: ["frontend"]
+
+# ── 输出到 Logstash ───────────────────────────────
+output.logstash:
+  hosts: ["logstash:5044"]
+
+# ── 日志级别 ─────────────────────────────────────
+logging.level: warning
+logging.to_files: true
+logging.files:
+  path: /usr/share/filebeat/logs
+  name: filebeat
+  keepfiles: 3
+
+# ── 自动重载配置 ──────────────────────────────────
+filebeat.config.inputs:
+  enabled: false
+
+# ── 关闭 Index Lifecycle Management（由 Logstash 管理索引） ──
+setup.ilm.enabled: false
+setup.template.enabled: false

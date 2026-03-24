@@ -1,0 +1,52 @@
+---
+- name: Deploy Prometheus Monitoring Stack
+  hosts: prometheus_servers
+  become: yes
+
+  tasks:
+    - name: Ensure Docker is installed
+      package:
+        name: docker.io
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Ensure Docker is installed (RHEL/CentOS)
+      package:
+        name: docker
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Ensure Docker service is running
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Ensure docker-compose is installed
+      get_url:
+        url: https://github.com/docker/compose/releases/latest/download/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: '0755'
+
+    - name: Create prometheus-monitor directory
+      file:
+        path: /root/prometheus-monitor
+        state: directory
+        mode: '0755'
+
+    - name: Copy prometheus-monitor configuration files
+      copy:
+        src: ../prometheus-monitor/
+        dest: /root/prometheus-monitor/
+        mode: '0644'
+        directory_mode: '0755'
+
+    - name: Deploy Prometheus stack with docker-compose
+      command: /usr/local/bin/docker-compose up -d
+      args:
+        chdir: /root/prometheus-monitor
+      register: deploy_result
+
+    - name: Show deploy result
+      debug:
+        var: deploy_result.stdout_lines
